@@ -1,0 +1,32 @@
+
+Add this TXT record to the mcorreale.me DNS zone.
+
+jun2017._domainkey    IN   TXT   v=DKIM1;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA9C/EyZLypZjnNyv0Lbz3ySfMpvJY69gQZ7jBQvNO/G2gpaxg3XB3VUC8kvQ8Q7+QRa/XRxQ8xD1LbxBvb/dhz3vpjVCoamiw1rrMHtvp3PeAsmRVB8W3Wlkz5zW+YNvuBa0aBN2xQg/NlIsqjZ4N3LS+URR94MlsNO3jR0cmYO7N7J0dXD5vuFaoXfTKkKjgbxAAYCQdY3ghGgGPKLvbqEpvhBgWNDR7XR/IMYZPLGhjy9uvyX+N06502nMqW4V7Vqhm66kr5xMHmwoi97TrHRRP+CvWCKentHvtMTSGPa+5OiEH+cPdzdzeNJy9748JXQjJx6CfP7BI4CItEbR+AwIDAQAB
+
+
+BIND zone file formatted:
+
+jun2017._domainkey    IN   TXT (
+	"v=DKIM1;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA9C/EyZLypZjnNyv0Lbz3ySfMpvJY69gQZ7jBQvNO/G2gpaxg3XB3VUC8"
+	"kvQ8Q7+QRa/XRxQ8xD1LbxBvb/dhz3vpjVCoamiw1rrMHtvp3PeAsmRVB8W3Wlkz5zW+YNvuBa0aBN2xQg/NlIsqjZ4N3LS+URR94MlsNO3jR0"
+	"cmYO7N7J0dXD5vuFaoXfTKkKjgbxAAYCQdY3ghGgGPKLvbqEpvhBgWNDR7XR/IMYZPLGhjy9uvyX+N06502nMqW4V7Vqhm66kr5xMHmwoi97Tr"
+	"HRRP+CvWCKentHvtMTSGPa+5OiEH+cPdzdzeNJy9748JXQjJx6CfP7BI4CItEbR+AwIDAQAB"
+        )
+
+Tell the world that the ONLY mail servers that send mail from this domain are DKIM signed and/or bear our MX and A records.
+
+With SPF:
+
+        SPF "v=spf1 mx a -all"
+        TXT "v=spf1 mx a -all"
+
+With DMARC:
+
+_dmarc  TXT "v=DMARC1; p=reject; adkim=s; aspf=r; rua=mailto:dmarc-feedback@mcorreale.me; ruf=mailto:dmarc-feedback@mcorreale.me; pct=100"
+
+For more information about DKIM and SPF policy, the documentation within each plugin contains a longer discussion and links to more detailed information:
+
+   haraka -h dkim_sign
+   haraka -h spf
+
+
